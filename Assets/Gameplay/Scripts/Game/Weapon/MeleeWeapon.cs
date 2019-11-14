@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gamekit3D
 {
@@ -22,13 +23,17 @@ namespace Gamekit3D
 #endif
 
         }
+        [System.Serializable]
+        public class Vector3Event : UnityEvent<Vector3> { }
 
         public ParticleSystem hitParticlePrefab;
         public LayerMask targetLayers;
-
+        public Vector3Event OnAttack;
         public AttackPoint[] attackPoints = new AttackPoint[0];
 
         public TimeEffect[] effects;
+
+        
 
         [Header("Audio")] public RandomAudioPlayer hitAudio;
         public RandomAudioPlayer attackAudio;
@@ -92,7 +97,7 @@ namespace Gamekit3D
                 Vector3 worldPos = attackPoints[i].attackRoot.position +
                                    attackPoints[i].attackRoot.TransformVector(attackPoints[i].offset);
                 m_PreviousPos[i] = worldPos;
-
+                OnAttack.Invoke(worldPos);
 #if UNITY_EDITOR
                 attackPoints[i].previousPositions.Clear();
                 attackPoints[i].previousPositions.Add(m_PreviousPos[i]);
@@ -103,8 +108,7 @@ namespace Gamekit3D
         public void EndAttack()
         {
             m_InAttack = false;
-
-
+            Debug.Log("attack end");
 #if UNITY_EDITOR
             for (int i = 0; i < attackPoints.Length; ++i)
             {
