@@ -5,10 +5,12 @@ using UnityEditor;
 
 public class GenerateTerrain : MonoBehaviour
 {
-    public GameObject currentBlockType;
+    public GameObject Surface;
+    public GameObject Inside;
     public GameObject parentNode;
     public int cols = 100;
     public int rows = 100;
+    public int yMax = 7;
     public float freq = 10f;
     public float amp = 10f;
 
@@ -30,22 +32,34 @@ public class GenerateTerrain : MonoBehaviour
         int sum = cols * rows;
         int halfCol = cols / 2;
         int halfRow = rows / 2;
+
+
+        float rdx = Random.Range(1, freq);
+        float rdy = Random.Range(1, freq);
+        Debug.Log("rdx: " + rdx);
+        Debug.Log("rdy: " + rdy);
+
         for (int x = -halfCol; x < halfCol; ++x)
             for(int z = -halfRow; z < halfRow; ++z)
             {
                 process_cnt++;
 
-                float a = Mathf.PerlinNoise(x / freq, z / freq) * amp;
+
+                float a = Mathf.PerlinNoise(x / rdx, z / rdy) * amp;
                 int y = (int)a;
 
-                for(int i = 0; i <= y; ++i)
+                int min = Mathf.Max(y - yMax, 0);
+
+                for(int i = y; i >= min; --i)
                 {
-                    GameObject newBlock = GameObject.Instantiate(currentBlockType, parentNode.transform);
+                    GameObject newObj = (i == y) ? Surface : Inside;
+
+                    GameObject newBlock = GameObject.Instantiate(newObj, parentNode.transform);
                     var pos = new Vector3(Mathf.Floor(x), Mathf.Floor(i), Mathf.Floor(z));
                     newBlock.transform.position = pos;
-                    block_cnt++;
                     blockData.Add(pos, newBlock);
-                    EditorUtility.DisplayProgressBar("Generating Block", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
+                    block_cnt++;
+                    EditorUtility.DisplayProgressBar("Generating Blocks", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
                 }
             }
         EditorUtility.ClearProgressBar();
@@ -67,7 +81,7 @@ public class GenerateTerrain : MonoBehaviour
         else
         {
             Debug.Log("Del Block");
-            GameObject newBlock = GameObject.Instantiate(currentBlockType, parentNode.transform);
+            GameObject newBlock = GameObject.Instantiate(Surface, parentNode.transform);
             newBlock.transform.position = pos;
             blockData[pos] = newBlock;
         }

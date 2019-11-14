@@ -344,11 +344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c5ec3fb3e5d904799428e07917eda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBlockType: {fileID: 3385076547301671492, guid: 7e5daa35ee9deb646b5f0c4127bea41d,
-    type: 3}
+  Surface: {fileID: 2415484588471619263, guid: abd2c64ea0c0a2f469e3bef3e43ce8b5, type: 3}
+  Inside: {fileID: 8647718517330599822, guid: bc4d741190fc7f947b42b83a8a9ad87f, type: 3}
   parentNode: {fileID: 345270008}
   cols: 50
   rows: 50
+  yMax: 3
   freq: 10
   amp: 10
 --- !u!65 &345270010
