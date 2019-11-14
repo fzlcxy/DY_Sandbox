@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[ExecuteInEditMode]
 public class GenerateTerrain : MonoBehaviour
 {
+    public GameObject root;
     public GameObject currentBlockType;
     public int cols = 100;
     public int rows = 100;
@@ -35,8 +37,9 @@ public class GenerateTerrain : MonoBehaviour
 
                 for(int i = 0; i <= y; ++i)
                 {
-                    GameObject newBlock = GameObject.Instantiate(currentBlockType);
+                    GameObject newBlock = GameObject.Instantiate(currentBlockType, root.transform);
                     newBlock.transform.position = new Vector3(x, i, z);
+                    
                     block_cnt++;
                     EditorUtility.DisplayProgressBar("Generating Block", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
                 }
