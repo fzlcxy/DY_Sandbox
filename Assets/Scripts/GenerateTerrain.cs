@@ -6,13 +6,14 @@ using UnityEditor;
 public class GenerateTerrain : MonoBehaviour
 {
     public GameObject currentBlockType;
+    public GameObject parentNode;
     public int cols = 100;
     public int rows = 100;
     public float freq = 10f;
     public float amp = 10f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         generate();
     }
@@ -24,9 +25,10 @@ public class GenerateTerrain : MonoBehaviour
         int block_cnt = 0;
 
         int sum = cols * rows;
-
-        for (int x = 0; x < cols; ++x)
-            for(int z = 0; z < rows; ++z)
+        int halfCol = cols / 2;
+        int halfRow = rows / 2;
+        for (int x = -halfCol; x < halfCol; ++x)
+            for(int z = -halfRow; z < halfRow; ++z)
             {
                 process_cnt++;
 
@@ -35,7 +37,7 @@ public class GenerateTerrain : MonoBehaviour
 
                 for(int i = 0; i <= y; ++i)
                 {
-                    GameObject newBlock = GameObject.Instantiate(currentBlockType);
+                    GameObject newBlock = GameObject.Instantiate(currentBlockType, parentNode.transform);
                     newBlock.transform.position = new Vector3(x, i, z);
                     block_cnt++;
                     EditorUtility.DisplayProgressBar("Generating Block", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
