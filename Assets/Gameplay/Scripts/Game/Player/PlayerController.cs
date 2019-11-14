@@ -536,7 +536,7 @@ namespace Gamekit3D
             movement += m_VerticalSpeed * Vector3.up * Time.deltaTime;
 
             // Move the character controller.
-            Debug.Log(movement+"_"+ m_VerticalSpeed);
+            //Debug.Log(movement+"_"+ m_VerticalSpeed);
             m_CharCtrl.Move(movement);
 
             // After the movement store whether or not the character controller is grounded.
