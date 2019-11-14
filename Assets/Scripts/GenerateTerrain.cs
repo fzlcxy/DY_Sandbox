@@ -12,6 +12,7 @@ public class GenerateTerrain : MonoBehaviour
     public int rows = 100;
     public int yMax = 7;
     public float freq = 10f;
+    public float offset = 0f;
     public float amp = 10f;
 
     // Start is called before the first frame update
@@ -33,8 +34,6 @@ public class GenerateTerrain : MonoBehaviour
 
         float rdx = Random.Range(1, freq);
         float rdy = Random.Range(1, freq);
-        Debug.Log("rdx: " + rdx);
-        Debug.Log("rdy: " + rdy);
 
         for (int x = -halfCol; x < halfCol; ++x)
             for(int z = -halfRow; z < halfRow; ++z)
@@ -42,7 +41,7 @@ public class GenerateTerrain : MonoBehaviour
                 process_cnt++;
 
 
-                float a = Mathf.PerlinNoise(x / rdx, z / rdy) * amp;
+                float a = Mathf.PerlinNoise(x / freq + offset, z / freq + offset) * amp;
                 int y = (int)a;
 
                 int min = Mathf.Max(y - yMax, 0);
