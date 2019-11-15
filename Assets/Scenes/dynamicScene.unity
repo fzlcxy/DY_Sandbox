@@ -21,8 +21,8 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.5372549, g: 0.6, b: 0.7254902, a: 1}
-  m_AmbientEquatorColor: {r: 0.61196154, g: 0.6568174, b: 0.6792453, a: 1}
-  m_AmbientGroundColor: {r: 0.6509434, g: 0.6437789, b: 0.62944996, a: 1}
+  m_AmbientEquatorColor: {r: 0.8301887, g: 0.8262727, b: 0.8262727, a: 1}
+  m_AmbientGroundColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -321,9 +321,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 345270013}
-  - component: {fileID: 345270012}
-  - component: {fileID: 345270011}
-  - component: {fileID: 345270010}
   - component: {fileID: 345270009}
   m_Layer: 8
   m_Name: GenerateTerrain
@@ -346,72 +343,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Surface: {fileID: 2415484588471619263, guid: abd2c64ea0c0a2f469e3bef3e43ce8b5, type: 3}
   Inside: {fileID: 8647718517330599822, guid: bc4d741190fc7f947b42b83a8a9ad87f, type: 3}
+  Water: {fileID: 4189882291015218153, guid: 3d9d47234b459cd48ac3d08aca5e575b, type: 3}
+  Tree: {fileID: 4994227253147696189, guid: 6e041a1a795108645ae69cfdeaa08ff2, type: 3}
   parentNode: {fileID: 345270008}
-  cols: 50
-  rows: 50
+  cols: 100
+  rows: 100
+  treeRates: 0.1
+  yWater: 6
   yMax: 3
-  freq: 10
-  amp: 10
---- !u!65 &345270010
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345270008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &345270011
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345270008}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &345270012
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345270008}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  freq: 30
+  amp: 20
 --- !u!4 &345270013
 Transform:
   m_ObjectHideFlags: 0
@@ -792,7 +733,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.301
