@@ -12,7 +12,6 @@ public class GenerateTerrain : MonoBehaviour
     public int rows = 100;
     public int yMax = 7;
     public float freq = 10f;
-    public float offset = 0f;
     public float amp = 10f;
 
     private Dictionary<Vector3, GameObject> blockData;
@@ -35,8 +34,8 @@ public class GenerateTerrain : MonoBehaviour
         int halfRow = rows / 2;
 
 
-        float rdx = Random.Range(1, freq);
-        float rdy = Random.Range(1, freq);
+        float ox = Random.Range(0f, 1f);
+        float oy = Random.Range(0f, 1f);
 
         for (int x = -halfCol; x < halfCol; ++x)
             for(int z = -halfRow; z < halfRow; ++z)
@@ -44,7 +43,7 @@ public class GenerateTerrain : MonoBehaviour
                 process_cnt++;
 
 
-                float a = Mathf.PerlinNoise(x / freq + offset, z / freq + offset) * amp;
+                float a = Mathf.PerlinNoise(x / freq + ox, z / freq + oy) * amp;
                 int y = (int)a;
 
                 int min = Mathf.Max(y - yMax, 0);
