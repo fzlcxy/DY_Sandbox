@@ -55,6 +55,7 @@ public class GenerateTerrain : MonoBehaviour
                     if(i == y && y > yWater)
                     {
                         newObj = Surface;
+                        if(x % 4 == 0 && z % 4 == 0)
                         {
                             float haveTree = Random.Range(0f, 1f);
                             if (haveTree < treeRates)
