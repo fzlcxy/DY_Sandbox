@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/dynamicScene.unity
+    guid: 7c3b1b03f9ed55e4c98ac704432f7c93
   m_configObjects: {}

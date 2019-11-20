@@ -100,7 +100,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000004, guid: 5016e126e5e8b2648a28635734c4e418,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -349,10 +349,10 @@ MonoBehaviour:
   cols: 100
   rows: 100
   treeRates: 0.1
-  yWater: 6
-  yMax: 3
+  yWater: 4
+  yMax: 8
   freq: 30
-  amp: 20
+  amp: 12
 --- !u!4 &345270013
 Transform:
   m_ObjectHideFlags: 0

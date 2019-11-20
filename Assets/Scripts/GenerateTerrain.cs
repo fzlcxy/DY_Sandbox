@@ -89,9 +89,9 @@ public class GenerateTerrain : MonoBehaviour
                     }
                 }
                 process_cnt++;
-                EditorUtility.DisplayProgressBar("Generating Blocks", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
+                //EditorUtility.DisplayProgressBar("Generating Blocks", process_cnt + " / " + sum, ((float)process_cnt / (float)sum));
             }
-        EditorUtility.ClearProgressBar();
+        //EditorUtility.ClearProgressBar();
         Debug.Log("block_cnt：" + block_cnt);
     }
 
